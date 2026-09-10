@@ -162,6 +162,18 @@ rules:
   - deletecollection
   - watch
 - apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
   - route.openshift.io
   resources:
   - routes
@@ -407,10 +419,7 @@ rules:
   - policies
   - placementbindings
   verbs:
-  - get
   - list
-  - create
-  - update
   - watch
   - delete
 - apiGroups:
@@ -418,9 +427,6 @@ rules:
   resources:
   - placements
   verbs:
-  - get
   - list
-  - create
-  - update
   - watch
   - delete

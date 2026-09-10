@@ -67,6 +67,14 @@ rules:
   verbs:
   - create
 - apiGroups:
+  - config.openshift.io
+  resources:
+  - apiservers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
   - extensions.hive.openshift.io
   resources:
   - agentclusterinstalls
@@ -124,6 +132,15 @@ rules:
   - create
   - delete
   - get
+  - patch
+  - update
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - create
+  - delete
   - patch
   - update
 - apiGroups:

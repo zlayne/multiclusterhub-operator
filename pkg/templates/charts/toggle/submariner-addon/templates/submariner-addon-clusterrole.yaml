@@ -168,6 +168,8 @@ rules:
   - infrastructures/status
   verbs:
   - get
+  - list
+  - watch
 - apiGroups:
   - submarineraddon.open-cluster-management.io
   resources:
@@ -267,6 +269,17 @@ rules:
   - coordination.k8s.io
   resources:
   - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - delete
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
   verbs:
   - get
   - list

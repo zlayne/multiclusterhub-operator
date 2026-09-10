@@ -12,6 +12,8 @@ rules:
   - events
   - namespaces
   - pods
+  - secrets
+  - services
   - services/proxy
   verbs:
   - create
@@ -26,16 +28,10 @@ rules:
   - ""
   resources:
   - groups
+  - uids
   - users
   verbs:
-  - create
-  - delete
-  - get
   - impersonate
-  - list
-  - patch
-  - update
-  - watch
 - apiGroups:
   - ""
   resources:
@@ -60,9 +56,7 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - secrets
   - serviceaccounts
-  - services
   verbs:
   - create
   - delete
@@ -413,13 +407,6 @@ rules:
   - patch
 - apiGroups:
   - ""
-  - authentication.k8s.io
-  resources:
-  - uids
-  verbs:
-  - impersonate
-- apiGroups:
-  - ""
   - events.k8s.io
   resources:
   - events
@@ -727,6 +714,12 @@ rules:
   - create
 - apiGroups:
   - authentication.k8s.io
+  resources:
+  - uids
+  verbs:
+  - impersonate
+- apiGroups:
+  - authentication.k8s.io
   - authorization.k8s.io
   resources:
   - uids
@@ -749,6 +742,13 @@ rules:
   - patch
   - update
   - watch
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - selfsubjectaccessreviews
+  - selfsubjectrulesreviews
+  verbs:
+  - create
 - apiGroups:
   - authorization.k8s.io
   resources:
@@ -878,11 +878,9 @@ rules:
   resources:
   - placements
   verbs:
-  - create
   - delete
   - get
   - list
-  - update
   - watch
 - apiGroups:
   - clusterview.open-cluster-management.io
@@ -900,6 +898,7 @@ rules:
   - apiservers
   - authentications
   - clusterversions
+  - infrastructures/status
   verbs:
   - get
   - list
@@ -910,12 +909,6 @@ rules:
   - infrastructures
   verbs:
   - '*'
-- apiGroups:
-  - config.openshift.io
-  resources:
-  - infrastructures/status
-  verbs:
-  - get
 - apiGroups:
   - config.openshift.io
   resources:
@@ -1118,10 +1111,13 @@ rules:
   - imageregistry.open-cluster-management.io
   resources:
   - managedclusterimageregistries
+  - managedclusterimageregistries/finalizers
   - managedclusterimageregistries/status
   verbs:
   - get
   - list
+  - patch
+  - update
   - watch
 - apiGroups:
   - integreatly.org
@@ -1263,6 +1259,18 @@ rules:
   - create
   - delete
   - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - create
+  - delete
   - get
   - list
   - patch
@@ -1421,11 +1429,8 @@ rules:
   resources:
   - placementbindings
   verbs:
-  - create
   - delete
-  - get
   - list
-  - update
   - watch
 - apiGroups:
   - policy.open-cluster-management.io
@@ -1460,9 +1465,21 @@ rules:
   - rbac.authorization.k8s.io
   resources:
   - clusterrolebindings
-  - clusterroles
   - rolebindings
   verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  verbs:
+  - bind
   - create
   - delete
   - get
@@ -1543,6 +1560,7 @@ rules:
   - collectorconfigs
   verbs:
   - create
+  - delete
   - get
   - list
   - patch
