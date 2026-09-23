@@ -332,7 +332,9 @@ spec:
               - kubevirtprojects
               - userpermissions
               verbs:
+              - get
               - list
+              - watch
             - apiGroups:
               - ""
               resources:
@@ -399,6 +401,23 @@ spec:
               verbs:
               - get
               - list
+              - watch
+            - apiGroups:
+              - observability.open-cluster-management.io
+              resources:
+              - multiclusterobservabilities
+              verbs:
+              - get
+              - list
+              - watch
+            - apiGroups:
+              - monitoring.coreos.com
+              resources:
+              - prometheuses/api
+              resourceNames:
+              - k8s
+              verbs:
+              - get
               - watch
         - apiVersion: rbac.authorization.k8s.io/v1
           kind: ClusterRole
@@ -448,7 +467,9 @@ spec:
               - kubevirtprojects
               - userpermissions
               verbs:
+              - get
               - list
+              - watch
             - apiGroups:
               - ""
               resources:
@@ -538,6 +559,23 @@ spec:
               verbs:
               - get
               - list
+              - watch
+            - apiGroups:
+              - observability.open-cluster-management.io
+              resources:
+              - multiclusterobservabilities
+              verbs:
+              - get
+              - list
+              - watch
+            - apiGroups:
+              - monitoring.coreos.com
+              resources:
+              - prometheuses/api
+              resourceNames:
+              - k8s
+              verbs:
+              - get
               - watch
         - apiVersion: rbac.authorization.k8s.io/v1
           kind: ClusterRole
